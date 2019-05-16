@@ -15,11 +15,11 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 const routing = (
   <Router>
     <div>
-      <Route exact path="/" component={App} />{" "}
-      <Route exact path="/posts" component={Posts} />{" "}
-      <Route path="/post/:id" component={Show} />{" "}
-      <Route path="/post/edit/:id" component={Edit} />{" "}
-    </div>{" "}
+      <Route exact path="/" component={App} />
+      <Route exact path="/posts" component={Posts} />
+      <Route path="/post/:id" component={Show} />
+      <Route path="/post/edit/:id" component={Edit} />
+    </div>
   </Router>
 );
 

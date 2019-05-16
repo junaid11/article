@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 export class Post extends Component {
   constructor(props) {
     super();
-    props.getData();
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.articles.length === 0 && this.props.getData();
+  }
 
   render() {
     return (

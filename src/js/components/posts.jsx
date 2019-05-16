@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { getData } from "../actions/index";
 import { Link } from "react-router-dom";
 export class Post extends Component {
-  constructor() {
+  constructor(props) {
     super();
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.articles.length === 0 && this.props.getData();
+  }
 
   render() {
     return (

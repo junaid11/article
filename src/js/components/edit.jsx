@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateArticle } from "../actions/index";
-//import { Route, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router";
 
 function mapDispatchToProps(dispatch) {
@@ -45,7 +45,8 @@ class ConnectedForm extends Component {
       }
     });
     this.props.updateArticle(article);
-    this.setState({ fireRedirect: true });
+    this.props.history.push("/post/" + this.props.match.params.id);
+    //this.setState({ fireRedirect: true });
     //    this.setState({ title: "" });
   }
   render() {
@@ -85,6 +86,6 @@ class ConnectedForm extends Component {
 const Form = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ConnectedForm);
+)(withRouter(ConnectedForm));
 
 export default Form;

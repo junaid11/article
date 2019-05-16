@@ -21,7 +21,16 @@ function rootReducer(state = initialState, action) {
     }
 
     if (action.type === "DELETE_POST") {
-        return remoteArticles.omit(state, action.payload);
+        const a = state.remoteArticles.filter(({
+            id
+        }) => id !== action.payload);
+        console.log(a);
+        return {
+            ...state,
+            remoteArticles: a
+        }
+        //return state.filter((remoteArticle) => remoteArticle.id !== action.payload);
+        //        return remoteArticles.omit(state, action.payload);
     }
 
     if (action.type === "DATA_LOADED") {

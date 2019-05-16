@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deletePost } from "../actions/index";
+import { deletePost, getData } from "../actions/index";
 import { Link } from "react-router-dom";
-
+import { withRouter } from "react-router-dom";
 const mapStateToProps = state => {
   return { article: state.remoteArticles };
 };
 
 class ShowPost extends Component {
   onDeleteClick(id) {
-    this.props.deletePost(id, () => {
-      this.props.history.push("/");
-    });
+    this.props.deletePost(id);
+    this.props.history.push("/");
   }
 
+  componentDidMount() {
+    this.props.article.length === 0 && this.props.getData();
+  }
   render() {
     const article = this.props.article;
     const match = this.props.match;
@@ -22,7 +24,7 @@ class ShowPost extends Component {
         {article.map(
           el =>
             el.id == match.params.id && (
-              <div>
+              <div key={el.id}>
                 <h2>Title : {el.title}</h2>
                 <b>Body:</b>
                 {el.body}
@@ -46,6 +48,6 @@ class ShowPost extends Component {
 
 const Show = connect(
   mapStateToProps,
-  { deletePost }
-)(ShowPost);
+  { deletePost, getData }
+)(withRouter(ShowPost));
 export default Show;
